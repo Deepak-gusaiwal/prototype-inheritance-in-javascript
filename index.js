@@ -45,3 +45,5 @@ document.querySelector(".btn1").addEventListener("chacha", () => {
 document.querySelector(".btn2").addEventListener('click',()=>{
     document.querySelector(".btn1").dispatchEvent(evt);
 })
+
+//check
