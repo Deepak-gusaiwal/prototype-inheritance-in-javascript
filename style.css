@@ -19,4 +19,8 @@ body{
     width: 200px;
     aspect-ratio: 1/1;
     background-color: royalblue;
+    margin-bottom: 1rem;
+}
+.box:nth-child(2n){
+    background-color: yellow;
 }
