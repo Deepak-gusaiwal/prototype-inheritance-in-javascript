@@ -13,10 +13,7 @@ tl.from(['.heroContentContainer .bound h2'],{
     duration:0.4
 })
 tl.from(['.hero .wrapper>img.bg'],{
-    scale:4,
-    zIndex:2,
-    x:'100%',
-    rotate:'45deg',
+    rotate:"260deg",
     opacity:0,
     duration:0.5
 })
