@@ -1,24 +1,22 @@
-// start learning gsap
-const tl = gsap.timeline()
-tl.to("#box1",{
-    x:500,
-    rotate:'360deg',
-    duration:1,
-    delay:1,
-    backgroundColor:"crimson"
-    
+let tl = gsap.timeline();
+
+tl.from(['header .wrapper .logo','header .wrapper nav a'],{
+    y:"-100%",
+    delay:0.2,
+    stagger:0.2,
+    duration:0.4
 })
-tl.to("#box2",{
-    x:500,
-    rotate:'360deg',
-    duration:1,
-    backgroundColor:"crimson"
-    
+tl.from(['.heroContentContainer .bound h2'],{
+    y:"100%",
+    delay:-0.8,
+    stagger:0.2,
+    duration:0.4
 })
-tl.to("#box3",{
-    x:500,
-    rotate:'360deg',
-    duration:1,
-    backgroundColor:"crimson"
-    
+tl.from(['.hero .wrapper>img.bg'],{
+    scale:4,
+    zIndex:2,
+    x:'100%',
+    rotate:'45deg',
+    opacity:0,
+    duration:0.5
 })
