@@ -17,16 +17,28 @@ tl.from(['.hero .wrapper>.bg'], {
     opacity: 0,
     duration: 0.5
 })
-gsap.from('.about .wrapper h2', {
-    rotate: "260deg",
-    duration: 2,
+gsap.to('.about .wrapper img', {
+    width:"100%",
     // scrollTrigger: ".about .wrapper h2"
     scrollTrigger:{
         scroller:"body",
-        trigger:".about .wrapper h2",
+        trigger:".about ",
         markers:true,
-        start:"top 60%",
-        end:"top 20%",
-        scrub:2
+        start:"top 0%",
+        end:"top -100%",
+        scrub:2,
+        pin:true
+    }
+})
+gsap.to('.service .wrapper h1', {
+    transform: "translateX(-100%)",
+    scrollTrigger:{
+        scroller:"body",
+        trigger:".service ",
+        markers:true,
+        start:"top 0%",
+        end:"top -100%",
+        scrub:1,
+        pin:true
     }
 })
