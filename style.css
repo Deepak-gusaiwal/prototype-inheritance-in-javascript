@@ -23,6 +23,9 @@ body {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
+    background-color: black;
+    color: white;
+    font-family: 'premier 2019';
 }
 
 /* globally used classes */
@@ -37,143 +40,63 @@ section{
     display: flex;
 }
 
-/* main */
-main {
-    padding: 1rem;
-    background-color: black;
-    color: white;
-    color: white;
+/* wrapper of all elements */
+/* main {
+    
+} */
+
+#page1{
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    background-color: crimson;
 }
 
-/* header css */
-header {
-    height: 50px;
-    background-color: #00f4ff4d;
-    display: flex;
-    padding-inline: 1rem;
-}
-
-header .wrapper {
+#page2{
     width: 100%;
-    justify-content: space-between;
-    align-items: center;
-
+    height: 100vh;
+    background-color: royalblue;
+}
+#page3{
+    width: 100%;
+    height: 100vh;
+    background-color: chocolate;
 }
 
-header .wrapper .logo {
-    display: flex;
-    color: white;
-    text-transform: uppercase;
-    font-size: max(6vw, 3rem);
-    font-family: 'premier 2019';
-}
-
-header .wrapper nav {
-    display: flex;
-    gap: 1rem;
-    text-transform: uppercase;
-}
-
-header .wrapper nav span {
-    overflow: hidden;
-}
-
-header .wrapper nav a {
-    display: block;
-    /* transform: translateY(100%); */
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-/* hero section */
-.hero {
-    font-family: 'luckiest guy';
-}
-
-.hero .wrapper {
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
+#page1 h1,
+#page2 h1,
+#page3 h1
+{
+    font-size: clamp(3rem,9vw,10rem);
+    margin: 0 auto;
+    width: fit-content;
+    transform: translateY(-50%);
+    top: 50%;
     position: relative;
-    isolation: isolate;
-    width: 100%;
+    text-align: center;
+    background-color: black;
 }
 
-.hero .wrapper>.bg {
-    position: absolute;
-    max-width: clamp(200px, 50%, 250px);
-    max-height: 100%;
-    height: fit-content;
-    z-index: -1;
+/* grid */
+.cards{
+    width: 100%;
+   top: 50%;
+   transform: translateY(-50%);
+   position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 1rem;
+    height: 80%;
+}
+
+.card{
+    background-color: black;
+    padding: 1rem;
     border-radius: 1rem;
     display: flex;
-    overflow: hidden;
-}
-
-.hero .wrapper .heroContentContainer {
-    width: clamp(300px, 80%, 900px);
-}
-
-.heroContentContainer .bound h2 {
-    font-size: clamp(4rem, 10vw, 10rem);
-}
-
-.heroContentContainer .bound {
-    padding-inline: 1rem;
-    overflow: hidden;
-}
-
-.heroContentContainer .bound:nth-child(2n) h2 {
-    text-align: center;
-    color: aqua;
-    text-shadow: 0px 0px 15px rgb(0, 0, 0), 0px 0px 20px rgb(0, 200, 255);
-    line-height: 1;
-}
-
-/* about section */
-.about{
-    /* background-color: royalblue; */
-}
-.about .wrapper{
-    width: 100%;
     justify-content: center;
     align-items: center;
 }
-.about .wrapper img{
-   width: 20%;
-   object-fit: cover;
-   position: relative;
-   background-color: rgb(0, 255, 229);
-}
 
-/* service section */
-.service{
-    /* background-color: crimson; */
-   
-}
-.service .wrapper {
-    align-items: center;
-    max-width: max-content;
-}
-.service .wrapper h1{
-    /* font-family: 'luckiest guy'; */
-    width: max-content;
-    width: fit-content;
-    font-size: clamp(50px,40vw,500px);
-    text-wrap: nowrap;
-    position: relative;
-    background: -webkit-linear-gradient(#ff0000, #333);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-/* media queries */
-@media (max-width:768px) {
-    header .wrapper nav {
-        display: none;
-    }
-    section{
-     min-height: fit-content;
-    }
+.card h2{
+    font-size: 4rem;
 }
