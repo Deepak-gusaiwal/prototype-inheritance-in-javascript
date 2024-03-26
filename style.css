@@ -1,89 +1,130 @@
+@font-face {
+  font-family: "plain-light";
+  src: url("./font/plain-light-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "plain-regular";
+  src: url("./font/plain-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "silkserif-lightitalic";
+  src: url("./font/silkserif-lightitalic-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "silkserif-regularitalic";
+  src: url("./font/silkserif-regularitalic-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
-
+  color: inherit;
+  text-decoration: none;
 }
 
 img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-
+:root {
+  --theme-bg: black;
+  --theme-text: white;
+}
 body {
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-    background-color: black;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: "plain-light";
+}
+body[theme="dark"] {
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+#main {
+  position: relative;
+}
+.bound {
+  overflow: hidden;
+  height: fit-content;
+}
+/* loader */
+#loader {
+  width: 100%;
+  height: 100%;
+  background-color: var(--theme-bg);
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  padding: max(10vw, 2rem);
+}
+#loader .bound {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+#loader .bound h3 {
+  font-size: max(8vw, 2.4rem);
+  text-transform: uppercase;
+}
+#loader .bound h4 {
+  font-size: max(4vw, 2rem);
+  font-weight: 500;
+  font-family: silkserif-lightitalic;
+}
+#loader .bound h4.loaderCounter {
+  display: flex;
+  gap: 0.5rem;
+}
+#loader .bound h4.loaderCounter span.count {
+  width: max(6vw, 3rem);
+}
+
+.fadingInOut {
+  animation-name: fadeInOut;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  color: transparent;
+  -webkit-text-stroke: 0.4px white;
+}
+@keyframes fadeInOut {
+  0% {
+    font-family: "plain-light";
+    color: transparent;
+    opacity: 1;
+  }
+  48% {
+    font-family: "plain-light";
+    color: transparent;
+    opacity: 0;
+  }
+  50% {
+    font-family: "silkserif-regularitalic";
     color: white;
-    font-family: 'premier 2019';
-}
-
-/* globally used classes */
-section{
-    min-height: 100vh;
-    display: flex;
-    padding: 1rem;
-}
-.wrapper {
-    max-width: 1300px;
-    margin: 0 auto;
-    display: flex;
-}
-
-/* wrapper of all elements */
-/* main {
-    
-} */
-
-#page1{
-    width: 100%;
-    height: 100vh;
-    background-color: crimson;
-}
-
-#page2{
-    width: 100%;
-    height: 100vh;
-    background-color: royalblue;
-}
-#page3{
-    width: 100%;
-    height: 100vh;
-    background-color: chocolate;
-}
-
-#page1 h1,
-#page2 h1,
-#page3 h1
-{
-    font-size: clamp(3rem,9vw,10rem);
-    margin: 0 auto;
-    width: fit-content;
-    transform: translateY(-50%);
-    top: 50%;
-    position: relative;
-    text-align: center;
-    background-color: black;
-}
-
-.box{
-    width: 300px;
-    height: 300px;
-    background-color: antiquewhite;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    border-radius: 5px;
-    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.395);
+    opacity: 1;
+  }
+  100% {
+    font-family: "silkserif-regularitalic";
+    color: white;
+    opacity: 0;
+  }
 }
