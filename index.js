@@ -19,11 +19,15 @@ function incrementLoadCount(){
 }
 
 
-tl.from(["#loader .bound h3","#loader .bound h4"], {
+tl.from(["#loader .bound h3","#loader .bound h4.loaderCounter"], {
   y: "150%",
   stagger: 0.2,
   duration: 0.6,
   delay: 0.5,
+});
+tl.to("#loader .bound h4.fadingInOut", {
+  opacity:0,
+  animationName:"fadeInOut"
 });
 
 tl.from("#loader .bound h4",{
