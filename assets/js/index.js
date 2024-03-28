@@ -84,15 +84,29 @@ function heroAnimFun() {
   let playBoxIcon = document.querySelector(
     ".heroSection .videoSection span.playBox"
   );
-  playBoxIcon.addEventListener("click", () => {
-    video.play();
+  let videoPlayed = false;
+  videoSection.addEventListener("click", () => {
+    videoPlayed = !videoPlayed;
+    gsap.to(playBoxIcon, {
+      display: videoPlayed ? "none" : "flex",
+    });
+    videoPlayed ? video.play() : video.pause();
   });
+  const { height, width, left, top } = videoSection.getBoundingClientRect();
   videoSection.addEventListener("mousemove", (e) => {
     const { clientX, clientY } = e;
-    // gsap.to(".heroSection .videoSection span.playBox", {
-    //   x: clientX,
-    //   y: clientY,
-    // });
+    // const topVal = ((clientY - top) / height) * 100;
+    // console.log(top, clientY, ((clientY - top) / height) * 100);
+    gsap.to(".heroSection .videoSection span.playBox", {
+      left: clientX - left,
+      top: clientY - top,
+    });
+  });
+  videoSection.addEventListener("mouseleave", () => {
+    gsap.to(".heroSection .videoSection span.playBox", {
+      left: "50%",
+      top: "50%",
+    });
   });
 }
 
