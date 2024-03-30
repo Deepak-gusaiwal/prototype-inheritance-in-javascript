@@ -1,3 +1,32 @@
+function locoWithScrollTrigger(){
+  gsap.registerPlugin(ScrollTrigger);
+// Using Locomotive Scroll
+const locoScroll = new LocomotiveScroll({
+  el: document.querySelector("#main"),
+  smooth: true
+});
+// each time Locomotive Scroll updates, tell ScrollTrigger to update too (sync positioning)
+locoScroll.on("scroll", ScrollTrigger.update);
+
+// tell ScrollTrigger to use these proxy methods for the "#main" element since Locomotive Scroll is hijacking things
+ScrollTrigger.scrollerProxy("#main", {
+  scrollTop(value) {
+    return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
+  }, // we don't have to define a scrollLeft because we're only scrolling vertically.
+  getBoundingClientRect() {
+    return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
+  }
+});
+
+// each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll. 
+ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+
+// after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
+ScrollTrigger.refresh();
+}
+locoWithScrollTrigger();
+
+
 let tl = gsap.timeline();
 
 //1.------------------------------- loading js
@@ -92,16 +121,36 @@ function heroAnimFun() {
     });
     videoPlayed ? video.play() : video.pause();
   });
-  const { height, width, left, top } = videoSection.getBoundingClientRect();
+
+  const { height, width, left, right, top, bottom } =
+    videoSection.getBoundingClientRect();
   videoSection.addEventListener("mousemove", (e) => {
     const { clientX, clientY } = e;
     // const topVal = ((clientY - top) / height) * 100;
     // console.log(top, clientY, ((clientY - top) / height) * 100);
+    let xVal = clientX;
+    let yVal = clientY;
+    //for calc xVal;
+    if (clientX > right) {
+      xVal = right - 50;
+    } else if (clientX < left) {
+      xVal = left + 50;
+    }
+    //for calc yVal;
+    if (clientY < top) {
+      yVal = top + 50;
+    } else if (clientY > bottom) {
+      yVal = bottom - 50;
+    }
+    // console.log(bottom, top, clientY, yVal);
     gsap.to(".heroSection .videoSection span.playBox", {
-      left: clientX - left,
-      top: clientY - top,
+      // left: clientX - left,
+      // top: clientY - top,
+      left: xVal,
+      top: yVal,
     });
   });
+
   videoSection.addEventListener("mouseleave", () => {
     gsap.to(".heroSection .videoSection span.playBox", {
       left: "50%",
@@ -121,7 +170,22 @@ function movingCursorFun() {
   });
 }
 
+//5 ------------------------- horizontalBar
+function horizontalBarFun() {
+  let scrollbarContainers = [
+    ...document.querySelectorAll(".scrollbarContainer"),
+  ];
+  scrollbarContainers.forEach((scrollbarContainer) => {
+    let newScrollItems = scrollbarContainer.children[0].cloneNode(true);
+    newScrollItems.classList.add("clonedScrollItem");
+    // console.log(newScrollItems);
+
+    scrollbarContainer.appendChild(newScrollItems);
+  });
+}
+
 preLoaderFun();
 movingCursorFun();
 createMagnetFun();
 heroAnimFun();
+horizontalBarFun();
