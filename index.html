@@ -4,15 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Start Locomotive js</title>
+    
     <link
-      rel="stylesheet"
-      href="./assets/locomotive/locomotive-scroll.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+    rel="stylesheet"
+    href="./assets/locomotive/locomotive-scroll.min.css"
+  />
   </head>
   <body theme="dark">
     <div id="main">
@@ -55,7 +56,7 @@
       <!-- End Header -->
 
       <!-- start Hero -->
-      <section class="heroSection">
+      <section data-scroll class="heroSection">
         <div class="container">
           <div class="sectionCount">
             <div class="bound">
@@ -88,7 +89,7 @@
       <!-- end Hero -->
 
       <!-- start about -->
-      <section class="aboutSection">
+      <section data-scroll data-scroll-speed="1" class="aboutSection">
         <div class="container">
           <div class="sectionHeadingWraper">
             <h2>About Us</h2>
@@ -152,7 +153,7 @@
       <!-- end about -->
 
       <!-- start horizontal bar -->
-      <section class="horizontalBarSection">
+      <section data-scroll class="horizontalBarSection">
         <div class="container">
           <div class="scrollbarContainer">
             <div class="scrollItems">
@@ -180,9 +181,7 @@
       <!-- end horizontal bar -->
 
       <!-- start footer -->
-      <h1 class="test">
-        TEst
-      </h1>
+      <h1 class="test">TEst</h1>
       <footer>
         <div class="container">
           <div class="footerTop">
@@ -192,7 +191,6 @@
             </div>
           </div>
         </div>
-        
       </footer>
       <!-- end footer -->
     </div>
