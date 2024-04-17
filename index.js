@@ -76,7 +76,8 @@ function heroSlider() {
 
   //Function to move on indicator click
   slideIndicators.forEach((indicator, index) => {
-    indicator.addEventListener('click',()=>{
+      indicator.addEventListener('click',()=>{
+        if (isAnimating) return;
         showSlide(index);
     })
   });
