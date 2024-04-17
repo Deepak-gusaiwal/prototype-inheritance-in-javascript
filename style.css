@@ -1,179 +1,151 @@
+/* base css */
+@font-face {
+    font-family: Heading;
+    src: url("./assets/font/FoundersGrotesk-Bold.otf");
+}
+@font-face {
+    font-family: Para;
+    src: url("./assets/font/FoundersGrotesk-Light.otf");
+}
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
-
+  color: inherit;
+  text-decoration: none;
 }
 
 img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
-
-
+h1,h2,h3,h4,h5,h6{
+    font-family: Heading;
+}
+p{
+    font-family:Para ;
+}
 body {
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
 }
 
-/* globally used classes */
-section{
-    min-height: 100vh;
-    display: flex;
-    padding: 1rem;
-}
 .wrapper {
-    max-width: 1300px;
-    margin: 0 auto;
-    display: flex;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
-/* main */
-main {
+/* 1,=========================================== header css */
+header{
+    height: 60px;
+    background-color: #262626;
+}
+/* hero Section css */
+#heroSection {
+  background-color: #333;
+  color: white;
+}
+
+#heroSection .wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+#heroSection .wrapper .heroLeft{
     padding: 1rem;
-    background-color: black;
-    color: white;
-    color: white;
-    width: 100%;
-    height: 100%;
 }
-
-/* header css */
-header {
-    height: 50px;
-    background-color: #00f4ff4d;
+#heroSection .wrapper .heroLeft .content{
     display: flex;
-    padding-inline: 1rem;
-}
-
-header .wrapper {
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-
-}
-
-header .wrapper .logo {
-    display: flex;
-    color: white;
-    text-transform: uppercase;
-    font-size: max(6vw, 3rem);
-    font-family: 'premier 2019';
-}
-
-header .wrapper nav {
-    display: flex;
-    gap: 1rem;
-    text-transform: uppercase;
-}
-
-header .wrapper nav span {
-    overflow: hidden;
-}
-
-header .wrapper nav a {
-    display: block;
-    /* transform: translateY(100%); */
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-/* hero section */
-.hero {
-    font-family: 'luckiest guy';
-}
-
-.hero .wrapper {
     flex-direction: column;
     gap: 1rem;
+}
+#heroSection .wrapper .heroLeft h2{
+    text-transform: uppercase;
+    font-size: clamp(2rem,5vw,5rem);
+    line-height: 1em;
+}
+
+#heroSection .wrapper .heroLeft .content h2 span{
+    color: coral;
+}
+#heroSection .wrapper .heroLeft .content p{
+    font-size: clamp(1rem,1.3vw,1.3rem);
+    font-weight: 500;
+}
+#heroSection .wrapper .heroLeft .content .heroBtn{
+    padding: 0.6rem 0.9rem;
+    background-color: rgb(186, 81, 43);
+    color: white;
+    display: flex;
+    width: fit-content;
+    font-family: Heading;
     justify-content: center;
     align-items: center;
+}
+#heroSection .wrapper .heroRight{
+    padding: 1rem;
+    height: clamp(200px,30vw,600px);
+}
+.sliderContainer {
     position: relative;
     isolation: isolate;
-    width: 100%;
+   height: 100%;
 }
-
-.hero .wrapper>.bg {
+.sliderContainer .slideBox{
     position: absolute;
-    max-width: clamp(200px, 50%, 250px);
-    max-height: 100%;
-    height: fit-content;
-    z-index: -1;
-    border-radius: 1rem;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+}
+.sliderContainer .slideBox:nth-child(1){
+    display: block;
+}
+.sliderContainer .slideBox .imgBox{
+    height: 100%;
     display: flex;
-    overflow: hidden;
 }
-
-.hero .wrapper .heroContentContainer {
-    width: clamp(300px, 80%, 900px);
+.sliderContainer .slideBox .imgBox img{
 }
-
-.heroContentContainer .bound h2 {
-    font-size: clamp(4rem, 10vw, 10rem);
+.sliderContainer .slideBox h2{
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color:royalblue;
+    font-size: clamp(2rem,8vw,8rem);
+    text-transform: uppercase;
+    z-index: -1;
 }
-
-.heroContentContainer .bound {
-    padding-inline: 1rem;
-    overflow: hidden;
+.sliderContainer .slideBox h2:nth-child(2){
+    color: transparent; /* Text color */
+    -webkit-text-stroke: 2px rgb(255, 255, 255);
+    z-index: 1;
 }
-
-.heroContentContainer .bound:nth-child(2n) h2 {
-    text-align: center;
-    color: aqua;
-    text-shadow: 0px 0px 15px rgb(0, 0, 0), 0px 0px 20px rgb(0, 200, 255);
-    line-height: 1;
-}
-
-/* about section */
-.about{
-    /* background-color: royalblue; */
-}
-.about .wrapper{
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
-.about .wrapper img{
-   width: 20%;
-   object-fit: cover;
-   position: relative;
-   background-color: rgb(0, 255, 229);
-}
-
-/* service section */
-.service{
-    /* background-color: crimson; */
-   
-}
-.service .wrapper {
-    align-items: center;
-    max-width: max-content;
-}
-.service .wrapper h1{
-    /* font-family: 'luckiest guy'; */
-    width: max-content;
+.sliderContainer .slideController span{
+    display: flex;
+    background-color: darksalmon;
+    color: black;
+    text-transform: uppercase;
+    font-family: Heading;
     width: fit-content;
-    font-size: clamp(50px,40vw,500px);
-    text-wrap: nowrap;
-    position: relative;
-    background: -webkit-linear-gradient(#ff0000, #333);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    padding: 0.5rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
 }
-/* media queries */
-@media (max-width:768px) {
-    header .wrapper nav {
-        display: none;
-    }
-    section{
-     min-height: fit-content;
-    }
+.sliderContainer .slideController span#left{
+    left: 0;
+}
+.sliderContainer .slideController span#right{
+    right: 0;
 }
