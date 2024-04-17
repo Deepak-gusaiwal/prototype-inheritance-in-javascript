@@ -97,6 +97,8 @@ header{
     position: relative;
     isolation: isolate;
    height: 100%;
+   overflow: hidden;
+   padding-bottom: 2rem;
 }
 .sliderContainer .slideBox{
     position: absolute;
@@ -112,8 +114,7 @@ header{
     height: 100%;
     display: flex;
 }
-.sliderContainer .slideBox .imgBox img{
-}
+
 .sliderContainer .slideBox h2{
     position: absolute;
     top: 80%;
@@ -148,4 +149,23 @@ header{
 }
 .sliderContainer .slideController span#right{
     right: 0;
+}
+.sliderContainer .slidePagination{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: -0%;
+width: 100%;
+}
+.sliderContainer .slidePagination span{
+    width: 25px;
+    height: 25px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 2px;
 }
