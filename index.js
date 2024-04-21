@@ -6,10 +6,17 @@ function heroSlider() {
     ".sliderContainer .slidePagination"
   );
   let autoSlideInterVal;
+  let slideAutoPlayTime = 3000;
   slideBoxes.forEach((slideBox, index) => {
     let slideIndicator = document.createElement("span");
+    //append TExt
     let text = document.createTextNode(index + 1);
     slideIndicator.appendChild(text);
+    // append fill
+    let indicatorFill = document.createElement("span");
+    indicatorFill.setAttribute("class", "fill");
+    slideIndicator.appendChild(indicatorFill);
+    // final append of all indicators to slidePagination container
     slidePagination.appendChild(slideIndicator);
   });
 
@@ -17,8 +24,10 @@ function heroSlider() {
   // Set initial slide index
   let currentSlideIndex = 0;
   let isAnimating = false;
-  // Function to show a slide
+
+  //===================== Function to show a slide
   function showSlide(index, isNext = true) {
+    console.log("calling show slide");
     isAnimating = true;
     const currentSlide = slideBoxes[index];
     // Hide all slides except the current one
@@ -29,11 +38,17 @@ function heroSlider() {
         }); // Hide the slide
       }
     });
+    // slideIndicators
     slideIndicators.forEach((indicator, i) => {
+      let fill = indicator.querySelector(".fill");
+      // gsap.set(fill, { display: "none", scaleX:"0%" });
       if (i !== index) {
         gsap.set(indicator, { opacity: 0.5 });
+        gsap.set(fill, {transform: "scaleX(0%)"});
       } else {
         gsap.set(indicator, { opacity: 1 });
+        gsap.set(fill, { display: "flex" });
+        gsap.to(fill, { transform: "scaleX(100%)", duration: slideAutoPlayTime / 1000 });
       }
     });
 
@@ -82,6 +97,7 @@ function heroSlider() {
     indicator.addEventListener("click", () => {
       if (isAnimating) return;
       showSlide(index);
+      currentSlideIndex = index; // update the current slide index
       restartAutoPlay();
     });
   });
@@ -89,7 +105,7 @@ function heroSlider() {
   // Show the initial slide
   showSlide(currentSlideIndex);
 
-  function autoPlay(time = "3000") {
+  function autoPlay(time = slideAutoPlayTime) {
     autoSlideInterVal = setInterval(nextSlide, time);
   }
   autoPlay();
