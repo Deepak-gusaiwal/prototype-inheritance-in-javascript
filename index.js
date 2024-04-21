@@ -5,6 +5,7 @@ function heroSlider() {
   let slidePagination = document.querySelector(
     ".sliderContainer .slidePagination"
   );
+  let autoSlideInterVal;
   slideBoxes.forEach((slideBox, index) => {
     let slideIndicator = document.createElement("span");
     let text = document.createTextNode(index + 1);
@@ -64,6 +65,7 @@ function heroSlider() {
     if (isAnimating) return;
     currentSlideIndex = (currentSlideIndex + 1) % slideBoxes.length;
     showSlide(currentSlideIndex);
+    restartAutoPlay();
   }
 
   // Function to move to previous slide
@@ -72,23 +74,30 @@ function heroSlider() {
     currentSlideIndex =
       (currentSlideIndex - 1 + slideBoxes.length) % slideBoxes.length;
     showSlide(currentSlideIndex, false);
+    restartAutoPlay();
   }
 
   //Function to move on indicator click
   slideIndicators.forEach((indicator, index) => {
-      indicator.addEventListener('click',()=>{
-        if (isAnimating) return;
-        showSlide(index);
-    })
+    indicator.addEventListener("click", () => {
+      if (isAnimating) return;
+      showSlide(index);
+      restartAutoPlay();
+    });
   });
 
   // Show the initial slide
   showSlide(currentSlideIndex);
 
-  function autoPlay(time = "5000") {
-    setInterval(nextSlide, time);
+  function autoPlay(time = "3000") {
+    autoSlideInterVal = setInterval(nextSlide, time);
   }
   autoPlay();
+  // Function to restart autoplay
+  function restartAutoPlay() {
+    clearInterval(autoSlideInterVal);
+    autoPlay(); // Restart autoplay with desired time
+  }
   // Event listeners for slide controls
   document.getElementById("left").addEventListener("click", prevSlide);
   document.getElementById("right").addEventListener("click", nextSlide);
@@ -96,3 +105,25 @@ function heroSlider() {
 
 // calling functions
 heroSlider();
+
+VanillaTilt.init(document.querySelector(".card"), {
+  max: 25,
+  speed: 500,
+  transition: false,
+});
+VanillaTilt.init(document.querySelectorAll(".slideBox .imgBox"), {
+  max: 25,
+  speed: 400,
+});
+
+//It also supports NodeList
+VanillaTilt.init(document.querySelectorAll(".card"));
+
+// second slider js
+function sliderFun() {
+  let slider2Container = document.querySelector(".slider2Container");
+
+  slider2Container.addEventListener("mousemove", (e) => {
+    let { width, left, right } = slider2Container.getBoundingClientRect();
+  });
+}
