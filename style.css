@@ -227,3 +227,62 @@ header {
 .slider2Container .slide h1 {
   font-size: clamp(2rem, 6vw, 5rem);
 }
+
+/* =====================================page3 */
+#page3 {
+  height: 100vh;
+}
+
+/* experiences around us */
+#container {
+  width: 100%;
+  height: 100vh;
+  background-color: royalblue;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+#container h2 {
+  font-size: clamp(2rem, 40vw, 20rem);
+  white-space: nowrap;
+}
+
+/* ==============================horizontalContainer */
+#horizontalContainer {
+  width: 100%;
+  height: 100vh;
+  max-width: 1330px;
+  margin: 0 auto;
+  background-color: aliceblue;
+  display: flex;
+  overflow-x: hidden;
+}
+#horizontalContainer .item {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+  position: relative;
+  isolation: isolate;
+}
+#horizontalContainer .item:nth-child(2n) {
+  background-color: aquamarine;
+}
+#horizontalContainer .item h2 {
+  font-size: clamp(2rem, 6vw, 5rem);
+  text-transform: uppercase;
+}
+#horizontalContainer .item .indicatorBox {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(0%, -50%);
+  z-index: -1;
+}

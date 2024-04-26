@@ -44,11 +44,14 @@ function heroSlider() {
       // gsap.set(fill, { display: "none", scaleX:"0%" });
       if (i !== index) {
         gsap.set(indicator, { opacity: 0.5 });
-        gsap.set(fill, {transform: "scaleX(0%)"});
+        gsap.set(fill, { transform: "scaleX(0%)" });
       } else {
         gsap.set(indicator, { opacity: 1 });
         gsap.set(fill, { display: "flex" });
-        gsap.to(fill, { transform: "scaleX(100%)", duration: slideAutoPlayTime / 1000 });
+        gsap.to(fill, {
+          transform: "scaleX(100%)",
+          duration: slideAutoPlayTime / 1000,
+        });
       }
     });
 
@@ -143,3 +146,80 @@ function sliderFun() {
     let { width, left, right } = slider2Container.getBoundingClientRect();
   });
 }
+
+// scrollTrigger
+let { width: parentWidth } = document
+  .querySelector("#container h2")
+  .parentElement.getBoundingClientRect();
+console.log(parentWidth);
+gsap.to("#container h2", {
+  transform: `translateX(calc(-100% + ${parentWidth}px))`,
+  scrollTrigger: {
+    scroller: "body",
+    trigger: "#container ",
+    pin: true,
+    start: "top 0%",
+    end: "top -100%",
+    // markers: true,
+    scrub: 1,
+  },
+});
+
+// ------------horizontal scroller
+let horizontalScrollerContainer = document.querySelector(
+  "#horizontalContainer"
+);
+let items = document.querySelectorAll("#horizontalContainer .item");
+
+let scrollTween = gsap.to(items, {
+  x: `${-100 * (items.length - 1)}%`,
+  ease: "none",
+  scrollTrigger: {
+    trigger: "#horizontalContainer",
+    scroller: "body",
+    scrub: 1,
+    // markers: true,
+    pin: true,
+    // start:"0% 0%", // triggerVal scrollerVal
+    // end:"top -200%",// triggerVal scrollerVal
+    end: "+=3000",
+  },
+});
+
+// animate headings of every item when it get into view
+items.forEach((item) => {
+  // indicatorBox in all items
+  let indicatorBox = document.createElement("div");
+  indicatorBox.setAttribute("class", "indicatorBox");
+  item.appendChild(indicatorBox);
+
+  // animate text
+  let text = item.querySelector("h2");
+  gsap.from(text, {
+    y: -200,
+    opacity: 0,
+    // duration: 2,
+    ease: "elastic",
+    scrollTrigger: {
+      trigger: item,
+      // scroller: "body",
+      containerAnimation: scrollTween,
+      scrub: 2,
+      // markers: true,
+      start: "left center",
+    },
+  });
+  // animate indicatorBox
+  let indicatorBoxElem = item.querySelector(".indicatorBox");
+  gsap.to(indicatorBoxElem, {
+    left: "100%",
+    scrollTrigger: {
+      trigger: item,
+      containerAnimation: scrollTween,
+      scrub: 2,
+      markers: true,
+      start: "left end",
+      end: "right end",
+    },
+  });
+});
