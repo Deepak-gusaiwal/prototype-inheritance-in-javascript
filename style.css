@@ -55,13 +55,31 @@ header {
 }
 
 /* string css */
-#string{
+#string {
   width: 100%;
   background-color: #000000;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#string svg{
+#string svg {
   /* background-color: red; */
 }
+
+/* bike roation */
+  /* Apply rotation animation to the wheels group */
+  #wheels path{
+    animation: wheel 1s linear infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  /* Define rotation animation */
+  @keyframes wheel {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

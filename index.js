@@ -19,4 +19,3 @@ stringBox.addEventListener("mousemove", (e) => {
   });
 });
 
-
