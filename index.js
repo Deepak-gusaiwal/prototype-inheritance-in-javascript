@@ -27,7 +27,7 @@ function heroSlider() {
 
   //===================== Function to show a slide
   function showSlide(index, isNext = true) {
-    console.log("calling show slide");
+    // console.log("calling show slide");
     isAnimating = true;
     const currentSlide = slideBoxes[index];
     // Hide all slides except the current one
@@ -151,7 +151,7 @@ function sliderFun() {
 let { width: parentWidth } = document
   .querySelector("#container h2")
   .parentElement.getBoundingClientRect();
-console.log(parentWidth);
+// console.log(parentWidth);
 gsap.to("#container h2", {
   transform: `translateX(calc(-100% + ${parentWidth}px))`,
   scrollTrigger: {
@@ -217,9 +217,78 @@ items.forEach((item) => {
       trigger: item,
       containerAnimation: scrollTween,
       scrub: 2,
-      markers: true,
+      // markers: true,
       start: "left end",
       end: "right end",
     },
   });
 });
+
+//////////////////////////////////////// slider2 js
+function slider2() {
+  let slides = [...document.querySelectorAll(".slide")];
+  let prv = document.querySelector(".navigators .prv");
+  let next = document.querySelector(".navigators .next");
+
+  let indicatorContainer = document.querySelector(
+    "#slider2 .wrapper .indicators"
+  );
+
+  slides.forEach((_, index) => {
+    indicatorContainer.innerHTML += `<span>${index + 1}</span>`;
+  });
+  let indicators = [
+    ...document.querySelectorAll("#slider2 .wrapper .indicators span"),
+  ];
+  //initialize indicators
+  gsap.to(indicators[0], {
+    opacity: 1,
+  });
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener("click", () => {
+      indicatorHighlighter(index);
+      showSlide(index);
+    });
+  });
+  function indicatorHighlighter(index) {
+    gsap.to("#slider2 .wrapper .indicators span", {
+      opacity: 0.5,
+    });
+    gsap.to(indicators[index], {
+      opacity: 1,
+    });
+  }
+
+  let currentSlide = 0;
+  function showSlide(indexToShow) {
+    slides.forEach((slide) => {
+      indicatorHighlighter(indexToShow);
+      gsap.to(slide, {
+        x: `-${indexToShow * 100}%`,
+      });
+    });
+  }
+
+  next.addEventListener("click", () => {
+    if (currentSlide >= slides.length - 1) {
+      currentSlide = 0;
+    } else {
+      currentSlide += 1;
+    }
+    // console.log(currentSlide, slides.length);
+    showSlide(currentSlide);
+  });
+
+  prv.addEventListener("click", () => {
+    console.log("before::", currentSlide, slides.length);
+    if (currentSlide <= 0) {
+      currentSlide = slides.length - 1;
+    } else {
+      currentSlide -= 1;
+    }
+    console.log("after::", currentSlide, slides.length);
+    showSlide(currentSlide);
+  });
+}
+
+slider2();

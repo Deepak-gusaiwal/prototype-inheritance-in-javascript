@@ -205,12 +205,34 @@ header {
 /* ======================= slider2 css */
 #slider2 {
   background-color: #dadada;
-  padding: 1rem;
+}
+#slider2 .wrapper {
+  position: relative;
+  isolation: isolate;
+  padding: 0;
+}
+#slider2 .wrapper .navigators {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+}
+#slider2 .wrapper .navigators span{
+  background-color: white;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+#slider2 .wrapper .navigators span:hover{
+  opacity: 0.8;
 }
 .slider2Container {
   display: flex;
-  gap: 1rem;
-  overflow-x: auto;
+  overflow: hidden;
 }
 .slider2Container .slide {
   width: 100%;
@@ -218,6 +240,7 @@ header {
   justify-content: center;
   align-items: center;
   background-color: #ececec;
+  border: 1px solid black;
   padding: 1rem;
   border-radius: 1rem;
   color: black;
@@ -226,6 +249,29 @@ header {
 }
 .slider2Container .slide h1 {
   font-size: clamp(2rem, 6vw, 5rem);
+}
+#slider2 .wrapper .indicators{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 0.5rem;
+}
+#slider2 .wrapper .indicators span {
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  background-color: black;
+  cursor: pointer;
+  opacity: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 4px;
+}
+#slider2 .wrapper .indicators span:hover{
+  opacity: 1;
 }
 
 /* =====================================page3 */
